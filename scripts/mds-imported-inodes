@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -ex
+
+DATA="$(dirname "$1")/mds-imported.csv"
+GRAPH="$(dirname "$1")/mds-imported.eps"
+
+(
+    cd "$1"
+    first=1
+    for mds in mds[0-9]*; do
+        if [ "$first" -eq 0 ]; then
+            printf '\n\n'
+        fi
+        printf '"%s"\n' "$mds"
+        sqlite3 -csv "$mds/root/stats.db" <<EOF
+SELECT timestamp, json_extract(perf_dump, '$.mds.imported_inodes')
+    FROM MDSStatus
+    ;
+EOF
+        first=0
+    done
+) > "$DATA"
+
+gnuplot <<EOF
+set datafile separator ","
+set terminal postscript eps mono
+set output '${GRAPH}'
+
+DATA = "${DATA}"
+
+stats DATA prefix "FILE"
+stats DATA using 2 prefix "timestamp" nooutput
+
+set xdata time
+set timefmt "%s"
+set format x "%H:%M"
+set xlabel "Time (hh:mm)"
+set xtics rotate by -45 offset -.8,0
+
+set ylabel "Imported inodes"
+set mytics
+
+plot [][0:] for [IDX=0:FILE_blocks-1] DATA index IDX using (\$1-timestamp_min):2 with lines title columnheader(1)
+EOF
+
+convert -flatten -density 800x800 "$GRAPH" "$(dirname "$GRAPH")/$(basename "$GRAPH" .eps).png"
