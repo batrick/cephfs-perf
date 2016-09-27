@@ -30,7 +30,7 @@ set output '${GRAPH}'
 DATA = "${DATA}"
 
 stats DATA prefix "FILE"
-stats DATA using 2 prefix "timestamp" nooutput
+stats DATA using 1 prefix "timestamp" nooutput
 
 set xdata time
 set timefmt "%s"
