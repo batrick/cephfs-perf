@@ -60,20 +60,20 @@ Complete in 84m.
 #### Memory (RSS)
 
 ##### MDS 0
-![](graphs/2048-mds_3-mds_16-clients_mds0_root_mdsmem-rss.png)
+![](graphs/2048-mds_3-mds_16-clients_stats_mds0_root_mdsmem-rss.png)
 ##### MDS 1
-![](graphs/2048-mds_3-mds_16-clients_mds1_root_mdsmem-rss.png)
+![](graphs/2048-mds_3-mds_16-clients_stats_mds1_root_mdsmem-rss.png)
 ##### MDS 2
-![](graphs/2048-mds_3-mds_16-clients_mds2_root_mdsmem-rss.png)
+![](graphs/2048-mds_3-mds_16-clients_stats_mds2_root_mdsmem-rss.png)
 
 #### Number of caps issued
 
 ##### MDS 0
-![](graphs/2048-mds_3-mds_16-clients_mds0_root_clients-num_caps.png)
+![](graphs/2048-mds_3-mds_16-clients_stats_mds0_root_clients-num_caps.png)
 ##### MDS 1
-![](graphs/2048-mds_3-mds_16-clients_mds1_root_clients-num_caps.png)
+![](graphs/2048-mds_3-mds_16-clients_stats_mds1_root_clients-num_caps.png)
 ##### MDS 2
-![](graphs/2048-mds_3-mds_16-clients_mds2_root_clients-num_caps.png)
+![](graphs/2048-mds_3-mds_16-clients_stats_mds2_root_clients-num_caps.png)
 
 
 
