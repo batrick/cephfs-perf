@@ -17,8 +17,6 @@ Complete in 99m4.928s.
 ![](graphs/2048-mds_1-mds_8-client_stats_mds2_root_mdsmem-rss.png)
 #### Number of caps issued
 ![](graphs/2048-mds_1-mds_8-client_stats_mds2_root_clients-num_caps.png)
-#### Imported inodes
-![](graphs/2048-mds_1-mds_8-client_mds-imported.png)
 
 
 ### 3 Active MDS
@@ -56,8 +54,6 @@ Complete in 323m23.187s.
 ![](graphs/2048-mds_1-mds_16-client_stats_mds1_root_mdsmem-rss.png)
 #### Number of caps issued
 ![](graphs/2048-mds_1-mds_16-client_stats_mds1_root_clients-num_caps.png)
-#### Imported inodes
-![](graphs/2048-mds_1-mds_16-client_mds-imported.png)
 
 
 ### 3 Active MDS
@@ -95,8 +91,6 @@ Complete in 68m22.712s.
 ![](graphs/4096-mds_1-mds_8-client_stats_mds0_root_mdsmem-rss.png)
 #### Number of caps issued
 ![](graphs/4096-mds_1-mds_8-client_stats_mds0_root_clients-num_caps.png)
-#### Imported inodes
-![](graphs/4096-mds_1-mds_8-client_mds-imported.png)
 
 
 ### 3 Active MDS
@@ -134,8 +128,6 @@ Complete in 147m49.498s.
 ![](graphs/4096-mds_1-mds_16-client_stats_mds2_root_mdsmem-rss.png)
 #### Number of caps issued
 ![](graphs/4096-mds_1-mds_16-client_stats_mds2_root_clients-num_caps.png)
-#### Imported inodes
-![](graphs/4096-mds_1-mds_16-client_mds-imported.png)
 
 
 ### 3 Active MDS
