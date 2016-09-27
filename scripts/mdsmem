@@ -26,7 +26,7 @@ stats "${DATA}" using 1 prefix "timestamp" nooutput
 set xdata time
 set timefmt "%s"
 set format x "%H:%M"
-set xlabel "Time (Minutes)"
+set xlabel "Time (hh:mm)"
 set xtics rotate by -45 offset -.8,0
 
 set ylabel "RSS (KB)"
