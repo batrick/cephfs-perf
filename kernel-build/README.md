@@ -18,12 +18,16 @@ The time to execute the parallel build for the clients is given in the table bel
 | RAM/Cores | # of Clients | # of MDSs | Time | Average Sum of Client Latency |
 |:---------:|:------------:|:---------:| ----:| -----------------------------:|
 | 2GB/1     | 8            | 1         | 99m  | 3326.75                       |
+| 2GB/1     | 8            | 2         | 80m  | 1364.04                       |
 | 2GB/1     | 8            | 3         | 63m  | 1307.50                       |
 | 2GB/1     | 16           | 1         | 323m | 16633.70                      |
+| 2GB/1     | 16           | 2         | 263m | (lost: corrupt db)            |
 | 2GB/1     | 16           | 3         | 84m  | 2499.43                       |
 | 4GB/2     | 8            | 1         | 68m  | 2037.89                       |
+| 4GB/2     | 8            | 2         | 73m  | 1235.29                       |
 | 4GB/2     | 8            | 3         | 50m  | 847.45                        |
 | 4GB/2     | 16           | 1         | 147m | 5277.31                       |
+| 4GB/2     | 16           | 2         | 115m | 3274.02                       |
 | 4GB/2     | 16           | 3         | 108m | 2876.89                       |
 
 When using a single core, the single MDS would consistently be at 100% CPU for
