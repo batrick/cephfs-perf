@@ -38,3 +38,7 @@ Complete in 263m35.568s.
 
 #### Imported inodes
 ![](graphs/2048-mds_2-mds_16-client_mds-imported_2.png)
+
+
+#### Auth Subtrees
+![](graphs/mds-auth-subtrees.png)
