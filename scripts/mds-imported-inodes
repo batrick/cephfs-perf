@@ -41,7 +41,7 @@ set xtics rotate by -45 offset -.8,0
 set ylabel "Imported inodes"
 set mytics
 
-plot [][0:] for [IDX=0:FILE_blocks-1] DATA index IDX using (\$1-timestamp_min):2 with lines title columnheader(1)
+plot [0:][0:] for [IDX=0:FILE_blocks-1] DATA index IDX using (\$1-timestamp_min):2 with lines title columnheader(1)
 EOF
 
 convert -flatten -density 800x800 "$GRAPH" "$(dirname "$GRAPH")/$(basename "$GRAPH" .eps).png"
