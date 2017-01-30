@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -ex
+
+STATS="$1/stats"
+
+for stats in "$STATS"/*mds*/stats.db; do
+	"$(dirname "$0")/clients" "$stats"
+	"$(dirname "$0")/mdsmem" "$stats"
+done
+
+"$(dirname "$0")/mds-imported-inodes" "$STATS"
