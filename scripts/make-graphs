@@ -10,3 +10,4 @@ for stats in "$STATS"/*mds*/stats.db; do
 done
 
 "$(dirname "$0")/mds-imported-inodes" "$STATS"
+"$(dirname "$0")/mds-inode-cache" "$STATS"
