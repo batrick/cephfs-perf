@@ -11,3 +11,6 @@ done
 
 "$(dirname "$0")/mds-imported-inodes" "$STATS"
 "$(dirname "$0")/mds-inode-cache" "$STATS"
+"$(dirname "$0")/mds-memory" "$STATS"
+"$(dirname "$0")/mds-requests" "$STATS"
+"$(dirname "$0")/mds-throughput" "$STATS"
