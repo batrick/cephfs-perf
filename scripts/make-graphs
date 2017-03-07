@@ -14,3 +14,7 @@ done
 "$(dirname "$0")/mds-memory" "$STATS"
 "$(dirname "$0")/mds-requests" "$STATS"
 "$(dirname "$0")/mds-throughput" "$STATS"
+"$(dirname "$0")/mds-caps" "$STATS"
+"$(dirname "$0")/mds-inode-expired" "$STATS"
+"$(dirname "$0")/mds-strays" "$STATS"
+"$(dirname "$0")/mds-objecter-op_w" "$STATS"

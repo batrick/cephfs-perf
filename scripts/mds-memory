@@ -11,11 +11,12 @@ GRAPH="$1/$NAME.eps"
 if ! [ -f "$RAW" ]; then
 (
     cd "$1"
-    for mds in ceph-mds*; do
+    for mds in *mds-[0-9]*; do
         sqlite3 -separator $'\t' -noheader "$mds/stats.db" <<EOF
-SELECT MDSStatus.timestamp, json_extract(MDSStatus.status, '$.whoami'), MAX(rss)*4096
+SELECT MDSStatus.timestamp, json_extract(MDSStatus.status, '$.whoami') AS rank, MAX(rss)*4096
     FROM MDSStatus JOIN DaemonStats ON DaemonStats.id = MDSStatus.id AND DaemonStats.timestamp = MDSStatus.timestamp
-    GROUP BY MDSStatus.id
+    WHERE rank >= 0 AND rank != 18446744073709551615
+    GROUP BY MDSStatus.id, MDSStatus.timestamp
     ORDER BY MDSStatus.timestamp
     ;
 EOF

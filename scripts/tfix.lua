@@ -4,6 +4,7 @@ local max_timestamp = 0
 for line in io.lines() do
     local timestamp, rank, data = line:match "(%d+)\t(%d+)\t(%d+)"
     rank = math.tointeger(rank)
+    if not rank then io.stderr:write(line, "\n") os.exit(1) end
     timestamp = math.tointeger(timestamp)
     mds[rank] = mds[rank] or {timestamps={},last=math.maxinteger-1,first=timestamp}
     local last = mds[rank].last

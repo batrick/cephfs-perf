@@ -8,7 +8,7 @@ GRAPH="$1/mds-auth-subtrees.eps"
 (
     cd "$1"
     first=1
-    for mds in ceph-mds*; do
+    for mds in *mds-[0-9]*; do
         if [ "$first" -eq 0 ]; then
             printf '\n\n'
         fi

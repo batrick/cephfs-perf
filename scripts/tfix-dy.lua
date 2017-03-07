@@ -2,10 +2,10 @@ local mds = {}
 local min_timestamp = math.maxinteger
 local max_timestamp = 0
 for line in io.lines() do
-    local timestamp, rank, data = line:match "(%d+)\t(%d+)\t(%d+)"
+    local timestamp, rank, data = line:match "^(%d+)\t(%d+)\t([%d.]+)$"
     rank = math.tointeger(rank)
     timestamp = math.tointeger(timestamp)
-    data = math.tointeger(data)
+    data = tonumber(data)
     mds[rank] = mds[rank] or {timestamps={},data={},last=math.maxinteger-1,first=timestamp}
     local first = mds[rank].first
     local last = mds[rank].last
