@@ -8,14 +8,15 @@ GRAPH="$1/mds-imported.eps"
 (
     cd "$1"
     first=1
-    for mds in ceph-mds*; do
+    for mds in *mds-[0-9]*; do
         if [ "$first" -eq 0 ]; then
             printf '\n\n'
         fi
         printf '"%s"\n' "$mds"
         sqlite3 -csv "$mds/stats.db" <<EOF
-SELECT timestamp, json_extract(perf_dump, '$.mds.imported_inodes')
+SELECT timestamp, json_extract(status, '$.whoami') AS rank, json_extract(perf_dump, '$.mds.imported_inodes')
     FROM MDSStatus
+    WHERE rank >= 0 AND rank != 18446744073709551615
     ;
 EOF
         first=0
