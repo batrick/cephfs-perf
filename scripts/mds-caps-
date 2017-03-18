@@ -2,7 +2,7 @@
 
 set -ex
 
-NAME=mds-caps
+NAME=mds-caps-
 
 RAW="$1/$NAME.raw"
 DATA="$1/$NAME.dat"
@@ -13,7 +13,7 @@ if ! [ -f "$RAW" ]; then
     cd "$1"
     for mds in *mds-[0-9]*; do
         sqlite3 -separator $'\t' -noheader "$mds/stats.db" <<EOF
-SELECT timestamp, json_extract(status, '$.whoami') AS rank, json_extract(perf_dump, '$.mds_mem.cap')
+SELECT timestamp, json_extract(status, '$.whoami') AS rank, json_extract(perf_dump, '$.mds_mem.cap-')
     FROM MDSStatus
     WHERE rank >= 0 AND rank != 18446744073709551615
     ORDER BY timestamp
@@ -45,7 +45,7 @@ set xtics rotate by -45 offset -.8,0
 
 set key below title "MDS Rank"
 
-set ylabel "MDS Capabilities Outstanding"
+set ylabel "MDS Capabilities Revoked"
 set mytics
 
 plot for [i=2:COL] DATA using 1:(sum [col=i:COL] column(col)) with filledcurves x1 title columnheader(i)

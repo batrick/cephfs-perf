@@ -2,7 +2,7 @@
 
 set -ex
 
-NAME=mds-inode-cache
+NAME=mds-ino
 
 RAW="$1/$NAME.raw"
 DATA="$1/$NAME.dat"
@@ -45,7 +45,7 @@ set xtics rotate by -45 offset -.8,0
 
 set key below title "MDS Rank"
 
-set ylabel "Cached Inodes"
+set ylabel "Inodes Cached"
 set mytics
 
 plot for [i=2:COL] DATA using 1:(sum [col=i:COL] column(col)) with filledcurves x1 title columnheader(i)
