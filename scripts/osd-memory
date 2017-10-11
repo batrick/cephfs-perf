@@ -2,21 +2,22 @@
 
 set -ex
 
-NAME=mds-memory
+NAME=osd-memory
 
-RAW="$NAME.raw"
-DATA="$NAME.dat"
-GRAPH="$NAME.eps"
+RAW="$1/$NAME.raw"
+DATA="$1/$NAME.dat"
+GRAPH="$1/$NAME.eps"
 
 if ! [ -f "$RAW" ]; then
 (
-    for mds in "$@"; do
-        sqlite3 -separator $'\t' -noheader "$mds" <<EOF
-SELECT MDSStatus.timestamp, json_extract(MDSStatus.status, '$.whoami') AS rank, MAX(rss)*4096
-    FROM MDSStatus JOIN DaemonStats ON DaemonStats.id = MDSStatus.id AND DaemonStats.timestamp = MDSStatus.timestamp
+    cd "$1"
+    for osd in *osd-[0-9]*; do
+        sqlite3 -separator $'\t' -noheader "$osd/stats.db" <<EOF
+SELECT OSDStatus.timestamp, json_extract(OSDStatus.status, '$.whoami') AS rank, MAX(rss)*4096
+    FROM OSDStatus JOIN DaemonStats ON DaemonStats.id = OSDStatus.id AND DaemonStats.timestamp = OSDStatus.timestamp
     WHERE rank >= 0 AND rank != 18446744073709551615
-    GROUP BY MDSStatus.id, MDSStatus.timestamp
-    ORDER BY MDSStatus.timestamp
+    GROUP BY OSDStatus.id, OSDStatus.timestamp
+    ORDER BY OSDStatus.timestamp
     ;
 EOF
     done
@@ -43,7 +44,7 @@ set format x "%H:%M"
 set xlabel "Time (hh:mm)"
 set xtics rotate by -45 offset -.8,0
 
-set key below title "MDS Rank"
+set key below title "OSD id"
 
 set ylabel "Memory Use (MB)"
 set mytics
