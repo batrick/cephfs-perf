@@ -2,14 +2,9 @@
 
 set -x
 
-STATS="$1/stats"
-
-for stats in "$STATS"/*mds*/stats.db; do
-	#"$(dirname "$0")/clients" "$stats"
-	#"$(dirname "$0")/mdsmem" "$stats"
-    echo
-done
-
+cd "$1"
+gunzip *sqldb.gz
 for s in "$(dirname "$0")"/mds-*; do
-    "$s" "$STATS"
+    "$s" *sqldb
 done
+gzip *sqldb
