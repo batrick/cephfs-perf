@@ -3,8 +3,8 @@
 set -x
 
 cd "$1"
-gunzip *sqldb.gz
 for s in "$(dirname "$0")"/mds-*; do
-    "$s" *sqldb
+    for d in *db; do
+        "$s" "$d"
+    done
 done
-gzip *sqldb
