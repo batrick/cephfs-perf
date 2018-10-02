@@ -1,10 +1,8 @@
 #!/bin/bash
 
-set -x
+set -xe
 
-cd "$1"
 for s in "$(dirname "$0")"/mds-*; do
-    for d in *db; do
-        "$s" "$d"
-    done
+    s=$(realpath "$s")
+    (cd "$1" && "$s" mds*/*db)
 done

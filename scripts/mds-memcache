@@ -43,12 +43,22 @@ set format x "%H:%M"
 set xlabel "Time (hh:mm)"
 set xtics rotate by -45 offset -.8,0
 
-set key below title "MDS Rank"
+#set key below title "MDS Rank"
 
 set ylabel "Memory Use (MB)"
 set mytics
+set ytics nomirror
 
-plot for [i=2:COL] DATA using 1:(sum [col=i:COL] column(col)/(1024*1024)) with filledcurves x1 title columnheader(i)
+set y2tics nomirror 10
+set y2range [0:100]
+set y2label 'Percent' 
+
+#plot for [i=2:COL] DATA using 1:(sum [col=i:COL] column(col)/(1024*1024)) with filledcurves x1 title columnheader(i)
+plot DATA using 1:(column(3)/(1024*1024)) with filledcurves x1 title "RSS", \
+     DATA using 1:((column(4))/(1024*1024)) with filledcurves x1 title "Cache", \
+     DATA using 1:((column(3)-column(4))/column(3)*100) with line lt 1 lc "black" axes x1y2 title "% smaller than RSS"
+#    DATA using 1:((column(3)-column(4))/(1024*1024)) with filledcurves x1 title "RSS - Cache", \
+
 EOF
 
 convert -flatten -density 800x800 "$GRAPH" "$(dirname "$GRAPH")/$(basename "$GRAPH" .eps).png"

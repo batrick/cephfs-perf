@@ -4,7 +4,6 @@ local max_timestamp = 0
 
 local null = setmetatable({}, {__index = function(t,k) return 0 end})
 local mt = {__index = function(t, k) return null end}
-io.stderr:write("null=", tostring(null), '\n')
 for line in io.lines() do
     local timestamp, rank, data = line:match "(%d+)\t(%d+)%s*(.*)"
     rank = math.tointeger(rank)
@@ -24,21 +23,21 @@ for line in io.lines() do
     local timestamps = rank.timestamps
     local datas = {}
     timestamps[timestamp] = datas
-    io.stderr:write(tostring(timestamp), " ", data, '\n')
+    --io.stderr:write(tostring(timestamp), " ", data, '\n')
     for d in data:gmatch("(%d+)%s*") do
         local d = tonumber(d)
         local n = #datas+1
         datas[n] = d
-        io.stderr:write('\t', tostring(n), "=", tostring(d), '\n')
+        --io.stderr:write('\t', tostring(n), "=", tostring(d), '\n')
         if last+1 <= timestamp-1 then
             local step = (d-timestamps[last][n])//(timestamp-last)
             for i = last+1, timestamp-1 do
                 if rawget(timestamps, i) == nil then
                     timestamps[i] = {}
                 end
-                io.stderr:write("last=", tostring(last), " i=", tostring(i), '\n')
-                io.stderr:write(tostring(timestamps[i]), " ", tostring(timestamps[i-1]), '\n')
-                io.stderr:write(tostring(timestamps[i][n]), " ", tostring(timestamps[i-1][n]), '\n')
+                --io.stderr:write("last=", tostring(last), " i=", tostring(i), '\n')
+                --io.stderr:write(tostring(timestamps[i]), " ", tostring(timestamps[i-1]), '\n')
+                --io.stderr:write(tostring(timestamps[i][n]), " ", tostring(timestamps[i-1][n]), '\n')
                 timestamps[i][n] = timestamps[i-1][n]+step
             end
         end
