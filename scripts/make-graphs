@@ -15,11 +15,12 @@ set -xe
 #    fi
 #done
 
-(cd "$T" && gunzip mds*/root/stats.db.gz) || true
+T="$1"
+find "$T" -name stats.db.gz -execdir gunzip {} +
 
 for s in "$(dirname "$0")"/mds-*; do
     s=$(realpath "$s")
-    (cd "$T" && "$s" mds*/root/*db)
+    (cd "$T" && "$s" mds*/*db)
 done
 
 #rm -rf -- "$T"
